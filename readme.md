@@ -167,7 +167,7 @@ python run_ycb_video.py --ycbv_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DAT
 
 - For setting up on Windows, refer to [this](https://github.com/NVlabs/FoundationPose/issues/148).
 
-- If you are getting unreasonable results, check [this](https://github.com/NVlabs/FoundationPose/issues/44#issuecomment-2048141043)
+- If you are getting unreasonable results, check [this](https://github.com/NVlabs/FoundationPose/issues/44#issuecomment-2048141043) and [this](https://github.com/030422Lee/FoundationPose_manual)
 
 # Training data download
 Our training data include scenes using 3D assets from GSO and Objaverse, rendered with high quality photo-realism and large domain randomization. Each data point includes **RGB, depth, object pose, camera pose, instance segmentation, 2D bounding box**. [[Google Drive]](https://drive.google.com/drive/folders/1s4pB6p4ApfWMiMjmTXOFco8dHbNXikp-?usp=sharing).
@@ -176,6 +176,11 @@ Our training data include scenes using 3D assets from GSO and Objaverse, rendere
 
 - To parse the camera params including extrinsics and intrinsics
   ```
+  glcam_in_cvcam = np.array([[1,0,0,0],
+                          [0,-1,0,0],
+                          [0,0,-1,0],
+                          [0,0,0,1]]).astype(float)
+  W, H = camera_params["renderProductResolution"]
   with open(f'{base_dir}/camera_params/camera_params_000000.json','r') as ff:
     camera_params = json.load(ff)
   world_in_glcam = np.array(camera_params['cameraViewTransform']).reshape(4,4).T
