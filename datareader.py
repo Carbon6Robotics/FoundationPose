@@ -7,8 +7,9 @@
 # license agreement from NVIDIA CORPORATION is strictly prohibited.
 
 
-from Utils import *
 import json,os,sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from Utils import *
 
 
 BOP_LIST = ['lmo','tless','ycbv','hb','tudl','icbin','itodd']
